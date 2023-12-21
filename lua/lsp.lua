@@ -22,12 +22,24 @@ end
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-for _, server in ipairs(servers) do
-    lspconfig[server].setup({
-        on_attach = on_attach,
-        capabilities = capabilities
-    })
-end
+lspconfig.lua_ls.setup({
+    on_attach = on_attach,
+    capabilities = capabilities
+})
+
+lspconfig.clangd.setup({
+    cmd = {
+        "clangd",
+        "--function-arg-placeholders=0"
+    },
+    on_attach = on_attach,
+    capabilities = capabilities
+})
+
+lspconfig.rust_analyzer.setup({
+    on_attach = on_attach,
+    capabilities = capabilities
+})
 
 vim.diagnostic.config({
     virtual_text = {
@@ -73,6 +85,7 @@ cmp.setup {
     }),
     sources = {
         { name = 'nvim_lsp' },
+        { name = 'luasnip' },
     },
 }
 
