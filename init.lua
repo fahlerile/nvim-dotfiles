@@ -1,10 +1,7 @@
 vim.g.mapleader = ","
 
-require("lines")
-require("search")
-require("tabs")
+require("basic")
 require("plugins")
-require("colorscheme")
-require("remaps")
 require("lsp")
+require("colorscheme")
 
